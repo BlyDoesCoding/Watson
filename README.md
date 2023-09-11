@@ -15,7 +15,7 @@ Watson is a Go program that integrates with Discord's Rich Presence (RPC) featur
 
 ## Installation
 
-You can find the latest release of Watson on the [Releases](https://github.com/BlyDoesCoding/Watson/releases) page. Download the binary executable for your platform and follow the installation instructions in the documentation.
+You can find the latest release of Watson on the [Releases](https://github.com/BlyDoesCoding/Watson/releases) page. Download the binary executable for your platform.
 
 ## Features
 
