@@ -58,7 +58,6 @@ func main() {
 
 	TalkingPage := container.New(
 		layout.NewVBoxLayout(),
-
 		layout.NewSpacer(),
 		TalkToWho,
 		WhereTalk,
@@ -67,8 +66,6 @@ func main() {
 
 	ReadingPage := container.New(
 		layout.NewVBoxLayout(),
-		layout.NewSpacer(),
-
 		layout.NewSpacer(),
 		BookToRead,
 		BookGenre,
