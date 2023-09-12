@@ -48,6 +48,14 @@ func main() {
 	StreamLink := widget.NewEntry()
 	StreamLink.PlaceHolder = "Link To your Stream"
 
+	//Working Tthings
+
+	TitleOfProject := widget.NewEntry()
+	TitleOfProject.PlaceHolder = "Project Name"
+
+	ProjectLink := widget.NewEntry()
+	ProjectLink.PlaceHolder = "Link to Project"
+
 	BrowsingPage := container.New(
 		layout.NewVBoxLayout(),
 		layout.NewSpacer(),
@@ -58,6 +66,7 @@ func main() {
 
 	TalkingPage := container.New(
 		layout.NewVBoxLayout(),
+
 		layout.NewSpacer(),
 		TalkToWho,
 		WhereTalk,
@@ -66,6 +75,8 @@ func main() {
 
 	ReadingPage := container.New(
 		layout.NewVBoxLayout(),
+		layout.NewSpacer(),
+
 		layout.NewSpacer(),
 		BookToRead,
 		BookGenre,
@@ -81,10 +92,18 @@ func main() {
 		layout.NewSpacer(),
 	)
 
+	WorkingPage := container.New(
+		layout.NewVBoxLayout(),
+		layout.NewSpacer(),
+		TitleOfProject,
+		ProjectLink,
+		layout.NewSpacer(),
+	)
+
 	HomePage := container.New(
 		layout.NewVBoxLayout(),
 		layout.NewSpacer(),
-		widget.NewSelect([]string{"Talking", "Reading", "Streaming", "Browsing"}, func(value string) {
+		widget.NewSelect([]string{"Talking", "Reading", "Streaming", "Browsing", "Working"}, func(value string) {
 			switch value {
 
 			case "Reading":
@@ -98,6 +117,9 @@ func main() {
 
 			case "Streaming":
 				StartStreaming(TitleOfStream.Text, StreamLink.Text)
+
+			case "Working":
+				StartWorking(TitleOfProject.Text, ProjectLink.Text)
 			}
 
 		}),
@@ -110,6 +132,7 @@ func main() {
 		container.NewTabItem("Talking", TalkingPage),
 		container.NewTabItem("Browsing", BrowsingPage),
 		container.NewTabItem("Streaming", StramingPage),
+		container.NewTabItem("Working", WorkingPage),
 	)
 
 	tabs.SetTabLocation(container.TabLocationLeading)
@@ -125,16 +148,16 @@ func main() {
 func StartReading(NameOfBook string, BookGenre string, LinkToBook string) {
 
 	if LinkToBook == "" {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151169281468416092")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Reading",
-			Details:    "I'm currently Reading: " + NameOfBook,
-			LargeImage: "book",
+
+			Details:    NameOfBook,
+			LargeImage: "open-book",
 			LargeText:  "Genre: " + BookGenre,
 
 			Timestamps: &client.Timestamps{
@@ -142,16 +165,16 @@ func StartReading(NameOfBook string, BookGenre string, LinkToBook string) {
 			},
 		})
 	} else {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151169281468416092")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Reading",
-			Details:    "I'm currently Reading: " + NameOfBook,
-			LargeImage: "book",
+
+			Details:    NameOfBook,
+			LargeImage: "open-book",
 			LargeText:  "Genre: " + BookGenre,
 
 			Timestamps: &client.Timestamps{
@@ -171,14 +194,14 @@ func StartReading(NameOfBook string, BookGenre string, LinkToBook string) {
 func StartTalking(NameOfPartner string, DiscordLink string) {
 
 	if DiscordLink == "" {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151168383220449420")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Talking",
+
 			Details:    "I'm talking with " + NameOfPartner,
 			LargeImage: "talk",
 
@@ -187,14 +210,14 @@ func StartTalking(NameOfPartner string, DiscordLink string) {
 			},
 		})
 	} else {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151168383220449420")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Talking",
+
 			Details:    "I'm talking with " + NameOfPartner,
 			LargeImage: "talk",
 
@@ -213,14 +236,14 @@ func StartTalking(NameOfPartner string, DiscordLink string) {
 
 func StartBrowsing(Site string, SiteURL string) {
 	if SiteURL == "" {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151167934887116931")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Browsing",
+
 			Details:    "Currently on " + Site,
 			LargeImage: "search",
 
@@ -229,14 +252,14 @@ func StartBrowsing(Site string, SiteURL string) {
 			},
 		})
 	} else {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151167934887116931")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Browsing",
+
 			Details:    "Currently on " + Site,
 			LargeImage: "search",
 
@@ -257,14 +280,13 @@ func StartBrowsing(Site string, SiteURL string) {
 func StartStreaming(Title string, URL string) {
 
 	if URL == "" {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151167472037286030")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Hi Im Currently Streaming",
 			Details:    Title,
 			LargeImage: "stream",
 
@@ -273,14 +295,13 @@ func StartStreaming(Title string, URL string) {
 			},
 		})
 	} else {
-		err := client.Login("1150554899541671996")
+		err := client.Login("1151167472037286030")
 		if err != nil {
 			panic(err)
 		}
 
 		now := time.Now()
 		err = client.SetActivity(client.Activity{
-			State:      "Hi Im Currently Streaming",
 			Details:    Title,
 			LargeImage: "stream",
 
@@ -290,6 +311,49 @@ func StartStreaming(Title string, URL string) {
 			Buttons: []*client.Button{
 				&client.Button{
 					Label: "Watch my Stream",
+					Url:   URL,
+				},
+			},
+		})
+	}
+
+}
+
+func StartWorking(Title string, URL string) {
+
+	if URL == "" {
+		err := client.Login("1151165670634033193")
+		if err != nil {
+			panic(err)
+		}
+
+		now := time.Now()
+		err = client.SetActivity(client.Activity{
+			State: Title,
+
+			LargeImage: "keyboard",
+
+			Timestamps: &client.Timestamps{
+				Start: &now,
+			},
+		})
+	} else {
+		err := client.Login("1151165670634033193")
+		if err != nil {
+			panic(err)
+		}
+
+		now := time.Now()
+		err = client.SetActivity(client.Activity{
+			State:      Title,
+			LargeImage: "keyboard",
+
+			Timestamps: &client.Timestamps{
+				Start: &now,
+			},
+			Buttons: []*client.Button{
+				&client.Button{
+					Label: "Visit my Project",
 					Url:   URL,
 				},
 			},
